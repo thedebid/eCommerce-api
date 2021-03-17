@@ -4,9 +4,12 @@ const userController = require('./user.controller')
 
 router
     .route('/')
-    .get(function(req,res,err){
-        console.log("dvgf")
-    })
-    .post(userController.createUser)
+    .get(userController.getUserList)
+       .post(userController.createUser)
 
+router
+       .route('/:id')
+       .get(userController.getUserById)
+
+   
 module.exports = router;
