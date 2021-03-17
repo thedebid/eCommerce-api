@@ -22,7 +22,15 @@ async function findById(id) {
     if (!user) throw 'User with' + ` ${id} ` + 'not found'
     return user
 }
+
+//function for deleting user
+async function remove(id) {
+    const user = await findById(id)
+    await user.remove(id)
+}
+
 module.exports = {
     save,
-    getAll,findById
+    getAll,findById,
+    remove
 }

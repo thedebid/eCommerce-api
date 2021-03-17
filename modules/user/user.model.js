@@ -6,13 +6,14 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
+        required: true,
     },
     status:{
         type:Number,
         default:0
     }
 },{
-    timestamp:true
+    timestamps: true,
 })
 
 const userModel = mongoose.model('user', userSchema)
