@@ -6,4 +6,10 @@ router
     .get(userController.getUserList)
     .post(userController.createUser)
 
-module.exports = router
+router
+       .route('/:id')
+       .get(userController.getUserById)
+       .delete(userController.deleteUser)
+
+   
+module.exports = router;
