@@ -3,7 +3,7 @@ const app = express()
 // require('dotenv/config')
 const morgan = require('morgan')
 const APIRoute = require('./routes/api.route')
-// require('./configs/mongoose')
+ require('./configs/mongoose')
 const config = require('./config.json')
 
 //Middlewares
