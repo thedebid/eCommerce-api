@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-function createUser(req, res, next) {
-  
-}
-function getUserList(req, res, next) {
-  
-}
-=======
+
 //const userService =require( "./user.service");
 function createUser(req, res, next) {
     console.log(req.body)
@@ -18,7 +11,6 @@ function getUserList(req, res, next) {
     console.log("dfv")
 }
 
->>>>>>> dev2
 module.exports = {
     createUser,
     getUserList,
