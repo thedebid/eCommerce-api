@@ -34,8 +34,20 @@ function getUserById(req, res, next) {
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err))
 }
+
+function deleteUser(req, res, next) {
+    userService
+        .remove(req.params.id)
+        .then(() =>
+            res.status(200).json({
+                message: 'User deleted successfully',
+            })
+        )
+        .catch((err) => next(err))
+}
 module.exports = {
     createUser,
     getUserList,
-    getUserById
+    getUserById,
+    deleteUser
 }
