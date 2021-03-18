@@ -28,9 +28,20 @@ async function remove(id){
     await category.remove(id)
 }
 
+async function update(id, data) {
+    const category = await findById(id)
+
+    // copy params to category and save
+
+    Object.assign(category, data)
+    return category.save()
+
+}
+
 module.exports = {
     save,
     getAll,
     findById,
-    remove
+    remove,
+    update
 }
