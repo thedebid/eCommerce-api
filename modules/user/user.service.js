@@ -29,6 +29,7 @@ async function remove(id) {
     await user.remove(id)
 }
 
+
 module.exports = {
     save,
     getAll,findById,

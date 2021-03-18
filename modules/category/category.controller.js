@@ -46,10 +46,20 @@ function deleteCategory(req, res, next) {
         .catch((err) => next(err))
 }
 
+// update category
+function updateCategory(req, res, next) {
+    console.log(req.body);
+    console.log(req.params.id)
+    categoryService
+        .update(req.params.id, req.body)
+        .then((result) => res.status(200).json(result))
+        .catch((err) => next(err))
+}
 
 module.exports = {
     createCategory,
     getCategoryList,
     getCategoryById,
-    deleteCategory
+    deleteCategory,
+    updateCategory
 }
