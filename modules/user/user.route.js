@@ -4,6 +4,7 @@ const userController = require('./user.controller');
 const userDetailController = require('./userDetail.controller')
 
 // route to controllers
+
 router
     .route('/')
     .get(userController.getUserList)
