@@ -11,15 +11,21 @@ function createUserDetail(req, res, next) {
 
 // update category
 function updateUserDetail(req, res, next) {
-    
+   // console.log(req.body)
     userDetailService
         .update(req.params.id, req.body)
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err))
 }
 
+function userDetailFindById(req,res,next) {
+    userDetailService
+    .findById(req.params.id)
+    .then((result) => res.status(200).json(result))
+    .catch((err) => next(err))
+}
 
 module.exports = {
     createUserDetail,
-    updateUserDetail
+    updateUserDetail,userDetailFindById
 }
