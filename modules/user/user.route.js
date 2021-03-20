@@ -13,11 +13,17 @@ router
 router.route('/detail')
     .post(userDetailController.createUserDetail)
 
+   
+   
+    router
+    .route('/detail/:id')
+    .get(userDetailController.userDetailFindById)
+    .put(userDetailController.updateUserDetail)
+
 //dynamic  endpoint always in end    
 router
        .route('/:id')
        .get(userController.getUserById)
        .delete(userController.deleteUser)
-       .put(userDetailController.updateUserDetail)
 
 module.exports = router;

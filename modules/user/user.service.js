@@ -23,6 +23,15 @@ async function findById(id) {
     return user
 }
 
+// function find by email
+
+async function findByEmail(email) {
+    //  if (!helper.isValidId(id)) throw 'Invalid user id:' + ` ${id}`
+      const user = await userModel.find({email:email})
+      if (!user) throw 'User with' + ` ${email} ` + 'not found'
+      return user
+  }
+
 //function for deleting user
 async function remove(id) {
     const user = await findById(id)
@@ -38,13 +47,15 @@ async function update(id, data) {
 
     Object.assign(userDetail, data)
     return userDetail.save()
-
 }
+
+
 
 
 module.exports = {
     save,
     getAll,findById,
     remove,
-    update
+    update,
+    findByEmail
 }
