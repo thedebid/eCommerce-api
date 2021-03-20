@@ -15,6 +15,25 @@ async function save(data){
    return newUserDetail.save()
   }
 
+  //function for getting user detail by id
+async function findById(id) {
+    //  if (!helper.isValidId(id)) throw 'Invalid user id:' + ` ${id}`
+      const userdetails = await userDetailModel.findOne({user:id}).populate('user')
+      if (!userdetails) throw 'Details of user with' + ` ${id} ` + 'not found'
+      return userdetails
+  }
+
+  async function update(id, data) {
+        const userDetail = await findById(id)
+    // copy params to category and save
+
+    Object.assign(userDetail, data)
+    return userDetail.save()
+
+}
+
   module.exports = {
-      save
+      save,
+      update
+      ,findById
   }
