@@ -1,50 +1,53 @@
-//user serv
-const userModel = require( "./user.model")
+const userModel = require("./user.model");
+const helper = require("./../../helpers/isValid");
 
 //function for saving user data
- function save(data){
+function save(data) {
   var newUser = new userModel({});
   newUser.email = data.email;
-  newUser.password = data.password;
- return newUser.save()
+  newUser.password = data.hash;
+  return newUser.save();
 }
 
 //function for getting all user data
-function getAll(){
-    return  userModel.find({});
-    
+function getAll() {
+  return userModel.find({});
 }
 
 //function for getting user data by id
 async function findById(id) {
-  //  if (!helper.isValidId(id)) throw 'Invalid user id:' + ` ${id}`
-    const user = await userModel.findById(id)
-    if (!user) throw 'User with' + ` ${id} ` + 'not found'
-    return user
+  if (!helper.isValidId(id)) throw "Invalid user id:" + ` ${id}`;
+  const user = await userModel.findById(id);
+  if (!user) throw "User with" + ` ${id} ` + "not found";
+  return user;
+}
+
+//function find by email
+async function findByEmail(email) {
+  const user = await userModel.findOne({ email: email });
+  if (!user) throw "User with" + ` ${email} ` + "not found";
+  return user;
 }
 
 //function for deleting user
 async function remove(id) {
-    const user = await findById(id)
-    await user.remove(id)
+  const user = await findById(id);
+  await user.remove(id);
 }
-
 
 //function for updating user detail
 async function update(id, data) {
-    const userDetail = await findById(id)
-
-    // copy params to userDetail and save
-
-    Object.assign(userDetail, data)
-    return userDetail.save()
-
+  const userDetail = await findById(id);
+  // copy params to userDetail and save
+  Object.assign(userDetail, data);
+  return userDetail.save();
 }
-
 
 module.exports = {
-    save,
-    getAll,findById,
-    remove,
-    update
-}
+  save,
+  getAll,
+  findById,
+  remove,
+  update,
+  findByEmail,
+};
