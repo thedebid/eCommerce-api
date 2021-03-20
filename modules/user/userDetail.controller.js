@@ -2,30 +2,34 @@ const userDetailService = require("./userDetail.service");
 
 // controller for saving user details
 function createUserDetail(req, res, next) {
-    userDetailService.save(req.body).then(result=>{
-        res.status(200).json(result)
-    }).catch(err=>{
-       next(err)
+  userDetailService
+    .save(req.body)
+    .then((result) => {
+      res.status(200).json(result);
     })
+    .catch((err) => {
+      next(err);
+    });
 }
 
-// update category
+// update user details
 function updateUserDetail(req, res, next) {
-   // console.log(req.body)
-    userDetailService
-        .update(req.params.id, req.body)
-        .then((result) => res.status(200).json(result))
-        .catch((err) => next(err))
+  userDetailService
+    .update(req.params.id, req.body)
+    .then((result) => res.status(200).json(result))
+    .catch((err) => next(err));
 }
 
-function userDetailFindById(req,res,next) {
-    userDetailService
+// find user details 
+function userDetailFindById(req, res, next) {
+  userDetailService
     .findById(req.params.id)
     .then((result) => res.status(200).json(result))
-    .catch((err) => next(err))
+    .catch((err) => next(err));
 }
 
 module.exports = {
-    createUserDetail,
-    updateUserDetail,userDetailFindById
-}
+  createUserDetail,
+  updateUserDetail,
+  userDetailFindById,
+};

@@ -35,7 +35,6 @@ async function update(id, data) {
 
     Object.assign(category, data)
     return category.save()
-
 }
 
 module.exports = {
