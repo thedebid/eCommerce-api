@@ -12,7 +12,7 @@ const userModel = require( "./user.model")
 //function for getting all user data
 function getAll(){
     return  userModel.find({});
-   
+    
 }
 
 //function for getting user data by id
@@ -29,8 +29,22 @@ async function remove(id) {
     await user.remove(id)
 }
 
+
+//function for updating user detail
+async function update(id, data) {
+    const userDetail = await findById(id)
+
+    // copy params to userDetail and save
+
+    Object.assign(userDetail, data)
+    return userDetail.save()
+
+}
+
+
 module.exports = {
     save,
     getAll,findById,
-    remove
+    remove,
+    update
 }
