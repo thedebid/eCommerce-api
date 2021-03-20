@@ -9,7 +9,17 @@ function createUserDetail(req, res, next) {
     })
 }
 
+// update category
+function updateUserDetail(req, res, next) {
+    
+    userDetailService
+        .update(req.params.id, req.body)
+        .then((result) => res.status(200).json(result))
+        .catch((err) => next(err))
+}
+
 
 module.exports = {
-    createUserDetail
+    createUserDetail,
+    updateUserDetail
 }
