@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //API Routes
 const api = config.API_URL;
-//app.use(`${api}/`, APIRoute);
+app.use(`${api}/`, APIRoute);
 
 //Server
 app.listen(config.PORT, () => {
