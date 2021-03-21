@@ -4,7 +4,6 @@ const categoryController = require('./category.controller')
 const subCategoryController = require('./subCategory.controller')
 
 // route to controllers
-
 router
     .route('/')
     .get(categoryController.getCategoryList)
@@ -18,6 +17,7 @@ router
     .route('/subcategory/:id')
     .get(subCategoryController.subCategoryFindById)
     .put(subCategoryController.updateSubCategory)
+    .delete(subCategoryController.deleteSubCategory)
 
 router
     .route('/:id')
