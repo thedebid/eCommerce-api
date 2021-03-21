@@ -31,8 +31,15 @@ async function update(id,data){
     return subCategory.save();
 }
   
+// function for deleting sub category 
+async function remove(id){
+  const subCategory = await findById(id)
+  await subCategory.remove(id)
+}
+
   module.exports = {
       save,
       findById,
-      update
+      update,
+      remove
   }
