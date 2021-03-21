@@ -29,7 +29,6 @@ function updateSubCategory(req, res, next){
     .catch((err) => next(err));
 }
 
-
 function deleteSubCategory(req, res, next) {
     subCategoryService
         .remove(req.params.id)
