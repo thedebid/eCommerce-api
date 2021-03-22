@@ -13,9 +13,7 @@ router
 router.route('/detail')
     .post(userDetailController.createUserDetail)
 
-   
-   
-    router
+router
     .route('/detail/:id')
     .get(userDetailController.userDetailFindById)
     .put(userDetailController.updateUserDetail)
