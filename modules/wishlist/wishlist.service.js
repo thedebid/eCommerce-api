@@ -37,11 +37,9 @@ async function update(id, data) {
   return wishlist.save();
 }
 
-
-
   module.exports = {
       save,
-      findById,
+      findById, 
       getAll,
       remove,
       update,
