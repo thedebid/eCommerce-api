@@ -1,6 +1,7 @@
 
 const supplierModel = require ('./supplier.model');
 
+const helper= require("./../../helpers/isValid")
 //function for saving supplier data
 function save(data) {
     const newSupplier = new supplierModel({
@@ -28,15 +29,16 @@ async function findById(id) {
     return supplier;
 }
 
-async function update(id){
-    if (!mongoose.isValidObjectId(req.params.id)){
-        res.status(500).send("Invalid supplier id")
-    }
+async function update(id,data){
+    // if (!mongoose.isValidObjectId(req.params.id)){
+    //     res.status(500).send("Invalid supplier id")
+    // }
+
+    if (!helper.isValidId(id)) throw `Invalid supplier id : ${id}`;
     else{
-        const supplier = await findByIdAndUpdate(Id);
+        const supplier = await supplierModel.findByIdAndUpdate(id);
         Object.assign(supplier, data);
         return supplier.save();
-          
 }
 }
 
