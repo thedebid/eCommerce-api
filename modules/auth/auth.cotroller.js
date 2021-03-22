@@ -6,7 +6,7 @@ function userAuthenticate(req, res, next) {
     .then((result) => {
       res.status(200).json({ message: "User logged in sucessfully", result });
     })
-    .catch((err) => next(err));
+    .catch((err) => next(err)); 
 }
 
 function userRegister(req, res, next) {
