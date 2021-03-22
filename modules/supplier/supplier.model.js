@@ -20,7 +20,8 @@ const supplierSchema = mongoose.Schema({
         default : 0 
     },
     password : {
-        type : String
+        type : String,
+        required : true
     },
     stauts : {
         type : Boolean,
@@ -29,5 +30,5 @@ const supplierSchema = mongoose.Schema({
 
 })
 
-const supplierModel = mongoose.model('category', supplierSchema);
+const supplierModel = mongoose.model('supplier', supplierSchema);
 module.exports = supplierModel;
