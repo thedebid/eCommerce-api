@@ -1,5 +1,6 @@
 const userDetailModel = require("./userDetail.model");
 const userModel = require("./user.model");
+
 // function for saving user details
 async function save(data) {
   const user = await userModel.findById(data.userid);
