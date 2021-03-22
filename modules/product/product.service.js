@@ -1,5 +1,5 @@
 const productModel = require("./product.model");
-const helpwe = require("./../../helpers/isValid")
+const helper = require("./../../helpers/isValid")
 //function for product
 function save(data) {
     var newProduct = new productModel({});
