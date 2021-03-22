@@ -2,7 +2,7 @@
 const subCategoryService = require("./subCategory.service");
 
 // controller for saving sub category details
-function createSubCategory(req, res,next){
+function createSubCategory(req, res, next){
     subCategoryService
         .save(req.body)
         .then((result) => {
@@ -29,8 +29,20 @@ function updateSubCategory(req, res, next){
     .catch((err) => next(err));
 }
 
+function deleteSubCategory(req, res, next) {
+    subCategoryService
+        .remove(req.params.id)
+        .then(() =>
+            res.status(200).json({
+                message: 'sub Category deleted successfully',
+            })
+        )
+        .catch((err) => next(err))
+}
+
 module.exports = {
     createSubCategory,
     subCategoryFindById,
-    updateSubCategory
+    updateSubCategory,
+    deleteSubCategory
 }
