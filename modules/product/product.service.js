@@ -1,5 +1,5 @@
 const productModel = require("./product.model");
-const helper = require("../../helpers/isValid");
+const helpwe = require("./../../helpers/isValid")
 //function for product
 function save(data) {
     var newProduct = new productModel({});
@@ -27,7 +27,7 @@ function getAll() {
 
   //function for getting product by id
 async function findById(id) {
-    if (!helper.isValidId(id)) throw "Invalid product id:" + ` ${id}`;
+   if (!helper.isValidId(id)) throw "Invalid product id:" + ` ${id}`;
     const product = await productModel.findById(id);
     if (!product) throw "Product with" + ` ${id} ` + "not found";
     return product;
