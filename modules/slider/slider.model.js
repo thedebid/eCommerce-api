@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const sliderModel = mongoose.Schema({
+const sliderSchema = mongoose.Schema({
     image : {
         type : String,
         required : true,
@@ -12,9 +12,9 @@ const sliderModel = mongoose.Schema({
     },
     status : {
         type : Boolean,
-        default : true
+        default : 0
     }
 })
 
-const sliderModel = mongoose.model('slider',sliderModel);
+const sliderModel = mongoose.model('slider',sliderSchema);
 module.exports = sliderModel;

@@ -13,23 +13,23 @@ const orderSchema = mongoose.Schema({
         type : Number,
         required : true,
     },
-    paymentMethod : {
+    // paymentMethod : {
 
-    },
+    // },
     supplier : {
         type : mongoose.SchemaTypes.ObjectId,
         ref : 'supplier'
-    },
-    orderDate:{
-        type : Date,
-        default : Date.now()
     }
+    // orderDate:{
+    //     type : Date,
+    //     default : Date.now()
+    // }
 
 
 },
-// {
-//     timestamps:true
-//     }
+{
+    timestamps:true
+    }
 )
 
 const orderModel = mongoose.model('order',orderSchema);

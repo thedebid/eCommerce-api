@@ -2,7 +2,7 @@ const express = require ('express');
 const router = express.Router();
 const supplierController = require('./supplier.controller');
 
-// route for supplier controlelrs
+// route for supplier controller
 
 router.route('/')
         .get(supplierController.getSupplierList)
