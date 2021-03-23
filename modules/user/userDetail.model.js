@@ -6,10 +6,8 @@ const userDetailSchema = mongoose.Schema(
       ref: "user",
       required: true,
     },
-    image: {
-      type: String,
-    },
-    address: {
+    image: [String],
+    addres: {
       type: String,
     },
     phone: Number,
