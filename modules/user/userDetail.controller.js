@@ -2,15 +2,24 @@ const userDetailService = require("./userDetail.service");
 
 // controller for saving user details
 function createUserDetail(req, res, next) {
-  console.log(req.file);
-  // userDetailService
-  //   .save(req.body)
-  //   .then((result) => {
-  //     res.status(200).json(result);
-  //   })
-  //   .catch((err) => {
-  //     next(err);
-  //   });
+  if (req.fileError) {
+    return next({
+      msg: req.fileError,
+      status: 400,
+    });
+  }
+  const data = req.body;
+  if (req.file) {
+    data.image = req.file.filename;
+  }
+  userDetailService
+    .save(data)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
 }
 
 // update user details
