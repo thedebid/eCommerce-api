@@ -27,7 +27,12 @@
          type : String,
      },
      brand : String,
-     price : Number,
+
+     price :{
+         type : Number,
+         required : true
+     },
+     
      quantity : Number,
      
      category : {
@@ -49,7 +54,11 @@
          type : Number,
          default : ""
      },
-     status : Boolean,
+     status : {  
+         type :Boolean,
+         default : 0
+     },
+
      dateCreated : {
          type: Date,
          default:Date.now()
