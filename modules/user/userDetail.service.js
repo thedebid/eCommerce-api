@@ -8,7 +8,7 @@ async function save(data) {
   var newUserDetail = new userDetailModel({});
   newUserDetail.user = data.userid;
   newUserDetail.image = data.image;
-  newUserDetail.address = data.address;
+  newUserDetail.addres = data.addres;
   newUserDetail.phone = data.phone;
   newUserDetail.gender = data.gender;
   return newUserDetail.save();
