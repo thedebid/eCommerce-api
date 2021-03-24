@@ -21,7 +21,7 @@ async function findById(id) {
     if (!subCategory) throw "Details of category with" + ` ${id} ` + "not found";
     return subCategory;
   }
-
+ 
 // function for updating sub category details
 async function update(id,data){
     const subCategory = await findById(id);
