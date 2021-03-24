@@ -13,6 +13,7 @@ const authRoute = require("../modules/auth/auth.route");
 
 const authorize = require("./../middlewares/authorize");
 
+const reviewRoute = require("../modules/review/review.route");
 
 
 router.use("/user", userRoute);
@@ -24,6 +25,7 @@ router.use("/product", productRoute);
 router.use("/order",orderRoute);
 router.use("/wishlist", wishlistRoute);
 router.use("/slider", sliderRoute);
+router.use("/review", reviewRoute);
 
 
 module.exports = router;

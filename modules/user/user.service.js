@@ -8,7 +8,7 @@ function save(data) {
   newUser.password = data.hash;
   return newUser.save();
 }
-
+ 
 //function for getting all user data
 function getAll() {
   return userModel.find({});
