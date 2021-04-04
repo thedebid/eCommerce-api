@@ -1,6 +1,6 @@
 ﻿{
     "API_URL" : "/api/v1",
-    "PORT" : "3000",
+    "PORT" : "8080",
     "url":"mongodb://localhost:27017",
     "dbname":"ecommerce",
     "DATABASE":{

@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 // require('dotenv/config')
 const morgan = require("morgan");
 const APIRoute = require("./routes/api.route");
@@ -9,6 +10,7 @@ const config = require("./config.json");
 //Middlewares
 //For log
 app.use(morgan("tiny"));
+app.use(cors());
 
 //For reading json and urlencoded data
 app.use(express.json());

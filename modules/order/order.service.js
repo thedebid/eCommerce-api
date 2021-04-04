@@ -10,7 +10,7 @@ function save(data){
         quantity:data.quantity,
         supplier:data.supplier,
         paymentMethod:data.paymentMethod
-        
+         
     })
     return newOrder.save();
 }
