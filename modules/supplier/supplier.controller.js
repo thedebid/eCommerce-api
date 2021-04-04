@@ -46,7 +46,7 @@ function getSupplierByID(req, res, next) {
 
 // controller for updating supplier data
 function updateSupplier(req, res, next){ 
-    supplierService.update(req.paras.id, req.body)
+    supplierService.update(req.params.id, req.body)
     .then((result)=> res.status(200).json(result))
     .catch((err)=>next(err));
 }

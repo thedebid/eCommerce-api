@@ -1,6 +1,7 @@
 
 const reviewModel = require('./review.model')
 const userDetailModel = require('../user/userDetail.model')
+const userModel = require('../user/user.model')
 const helper = require("../../helpers/isValid")
 
 
