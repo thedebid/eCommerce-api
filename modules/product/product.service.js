@@ -5,7 +5,7 @@ const productModel = require("./product.model");
 const helper = require("./../../helpers/isValid")
 //function for product
 function save(data) {
-  console.log(data);
+  //console.log(data);
     var newProduct = new productModel({});
     newProduct.name = data.name;
     newProduct.desc = data.description;
