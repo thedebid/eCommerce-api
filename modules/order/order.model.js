@@ -19,6 +19,12 @@ const orderSchema = mongoose.Schema({
     supplier : {
         type : mongoose.SchemaTypes.ObjectId,
         ref : 'supplier'
+    },
+
+    status : {
+        type : Boolean,
+        default : 1
+
     }
     // orderDate:{
     //     type : Date,

@@ -21,11 +21,11 @@
     //  },
      image: {
          type : String,
-         required : true
+        required : true
      },
-     images: {
+     images: [{
          type : String,
-     },
+     }],
      brand : String,
 
      price :{
@@ -59,10 +59,10 @@
          default : 0
      },
 
-     dateCreated : {
-         type: Date,
-         default:Date.now()
-     }
+    //  dateCreated : {
+    //      type: Date,
+    //      default:Date.now()
+    //  }
  
      
  },{

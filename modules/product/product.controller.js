@@ -1,10 +1,33 @@
 const productService = require("./product.service");
+const path = require('path');
 
 // controller for saving product 
 
 function createProduct(req, res, next) {
+    if (req.fileError) {
+        return next({
+          msg: req.fileError,
+          status: 400,
+        });
+      }
+      console.log(req.files.image[0].filename);
+      const data = req.body;
+      if (req.files) {
+        data.image =   req.files.image[0].filename;
+        
+        const images = []
+        req.files.images.map ( (data) => {
+        
+            images.push(data.filename)
+        
+        })
+        
+         data.images = images;
+      }
+    // console.log(req.body)
+
     productService
-      .save(req.body)
+      .save(data)
       .then((result) => {
         res.status(200).json(result);
       })
