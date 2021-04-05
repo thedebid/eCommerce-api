@@ -1,13 +1,16 @@
+const fs = require('fs');
+const path = require('path');
+require('../../middlewares/uploader');
 const productModel = require("./product.model");
 const helper = require("./../../helpers/isValid")
 //function for product
 function save(data) {
+  //console.log(data);
     var newProduct = new productModel({});
     newProduct.name = data.name;
     newProduct.desc = data.description;
     newProduct.image = data.image;
-    newProduct.images = data.images;
-    newProduct.brand = data.brand;
+    newProduct.images =data.images;
     newProduct.price = data.price;
     newProduct.quantity = data.quantity;
     newProduct.category = data.categoryId;
@@ -20,7 +23,7 @@ function save(data) {
     return newProduct.save();
   }
 
-  //function for getting all user data
+  //function for getting all products data
 function getAll() {
     return productModel.find({});
   }
@@ -36,7 +39,7 @@ async function findById(id) {
   //function for updating product detail
 async function update(id, data) {
     const product = await findById(id);
-    // copy params to userDetail and save
+    // copy params to productDetail and save
     Object.assign(product, data);
 
     return product.save();

@@ -12,7 +12,7 @@ function filter(req, file, cb) {
 }
 const diskStorage = multer.diskStorage({
   filename: function (req, file, cb) {
-    console.log(file);
+    // console.log(file);
     cb(null, Date.now() + "-" + file.originalname);
   },
   destination: function (req, file, cb) {
