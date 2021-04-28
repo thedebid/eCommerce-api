@@ -8,12 +8,14 @@ const notificationRoute = require("../modules/notification/notification.route");
 const productRoute = require("../modules/product/product.route");
 const wishlistRoute = require("../modules/wishlist/wishlist.route");
 const sliderRoute = require("../modules/slider/slider.route")
+const reviewRoute = require("../modules/review/review.route");
+const customerRoute = require("../modules/customer/customer.route");
+
 
 const authRoute = require("../modules/auth/auth.route");
 
 const authorize = require("./../middlewares/authorize");
 
-const reviewRoute = require("../modules/review/review.route");
 
 
 router.use("/user", userRoute);
@@ -26,6 +28,7 @@ router.use("/order",orderRoute);
 router.use("/wishlist", wishlistRoute);
 router.use("/slider", sliderRoute);
 router.use("/review", reviewRoute);
+router.use("/customer",customerRoute);
 
 
 module.exports = router;
