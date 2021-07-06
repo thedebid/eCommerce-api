@@ -1,6 +1,7 @@
 const authService = require("./auth.service");
 
 function userAuthenticate(req, res, next) {
+
   authService
     .auth(req.body)
     .then((result) => {

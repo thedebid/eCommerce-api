@@ -18,7 +18,7 @@ function getAll(){
 async function findById(id){
     
     const category = await categoryModel.findById(id)
-    if(!category) throw 'Category with' + `${id}` + 'not found'
+    if(!category) throw 'Category with Id : ' + `${id}` + 'not found'
     return category
 }
 
