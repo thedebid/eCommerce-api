@@ -5,10 +5,10 @@ const helper = require("./../../helpers/isValid");
 function save(data) {
   var newUser = new userModel({});
   newUser.email = data.email;
-  newUser.password = data.hash;
+  newUser.password = data.password;
   return newUser.save();
 }
- 
+
 //function for getting all user data
 function getAll() {
   return userModel.find({});
