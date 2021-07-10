@@ -15,12 +15,10 @@
     },
     "EMAILFROM": "info@eMall-api.com",
     "SMTPCONFIG": {
-        "host": "smtp.ethereal.email",
-        "port": 587,
-        "secure": false,
-        "auth": {
-            "user": "carter.kirlin42@ethereal.email",
-            "pass": "y7hfyMDM3VGpe6GSMk"
-        }
+        "service": "gmail",
+  "auth": {
+    "user": "linkwithproject0@gmail.com",
+    "pass": "K4l!k4k074"
+  }
     }
 }
