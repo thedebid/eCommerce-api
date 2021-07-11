@@ -1,20 +1,23 @@
 const authService = require("./auth.service");
 
 function userAuthenticate(req, res, next) {
-
   authService
     .auth(req.body)
     .then((result) => {
       res.status(200).json({ message: "User logged in sucessfully", result });
     })
-    .catch((err) => next(err)); 
+    .catch((err) => next(err));
 }
 
 function userRegister(req, res, next) {
   authService
-    .register(req.body)
+    .register(req.body, req.ip)
     .then((result) =>
-      res.status(200).json({ message: "User registered sucessfully", result })
+      res.status(200).json({
+        message:
+          "User registered sucessfully please check email for activation code",
+        result,
+      })
     )
     .catch((err) => next(err));
 }
@@ -43,22 +46,34 @@ function changePassword(req, res, next) {
     .catch((err) => next(err));
 }
 
-function verifyToken(req, res, next) {
+function verifyUserToken(req, res, next) {
   authService
-    .verifyToken(req.body)
+    .verifyToken(req.params.email, req.body, "foruser")
     .then((result) => {
       res.status(200).json({
         result,
-        message: "Token verified successfully, you can change password now",
+        message: "User verified successfully, you can login now",
       });
     })
     .catch((err) => next(err));
 }
-
+function verifyToken(req, res, next) {
+  authService
+    .verifyToken(req.params.email, req.body, "forfpass")
+    .then((result) => {
+      res.status(200).json({
+        result,
+        message:
+          "Token verified successfully, you can go ahead for further processing",
+      });
+    })
+    .catch((err) => next(err));
+}
 module.exports = {
   userAuthenticate,
   userRegister,
   forgotPassword,
+  verifyUserToken,
   verifyToken,
   changePassword,
 };

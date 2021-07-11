@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 // require('dotenv/config')
 const morgan = require("morgan");
 const APIRoute = require("./routes/api.route");
 require("./configs/mongoose");
 const config = require("./config.json");
-
+const errorHandler = require("./middlewares/error-handler");
 //Middlewares
 //For log
 app.use(morgan("tiny"));
@@ -37,10 +37,5 @@ app.listen(server_port, server_host, (err, done) => {
 });
 
 //For error handling
-app.use(function (err, req, res, next) {
-  console.log("Error handling middleware", err);
-  res.status(err.status || 400).json({
-    message: err.message || err,
-    status: err.status || 400,
-  });
-});
+// global error handler
+app.use(errorHandler);
