@@ -7,6 +7,7 @@ async function save(data) {
   if (!user) throw { status: 400, message: "User not found in system" };
   var newUserDetail = new userDetailModel({});
   newUserDetail.user = data.userid;
+  newUserDetail.username = data.username;
   newUserDetail.image = data.image;
   newUserDetail.addres = data.addres;
   newUserDetail.phone = data.phone;
