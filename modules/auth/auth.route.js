@@ -8,5 +8,6 @@ router.route("/forgot-password").post(authController.forgotPassword);
 router.route("/verify-user/:email").post(authController.verifyUserToken);
 router.route("/verify-token/:email").post(authController.verifyToken);
 router.route("/changepassword/:email").put(authController.changePassword);
+router.route("/cpassword/:email").put(authController.cPassword);
 
 module.exports = router;
