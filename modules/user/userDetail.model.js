@@ -6,6 +6,11 @@ const userDetailSchema = mongoose.Schema(
       ref: "user",
       required: true,
     },
+
+    username:{
+      type: String,
+    },
+
     image: [String],
     addres: {
       type: String,
