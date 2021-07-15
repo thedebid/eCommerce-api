@@ -69,11 +69,28 @@ function verifyToken(req, res, next) {
     })
     .catch((err) => next(err));
 }
+
+
+function cPassword(req, res, next) {
+  const email = req.params.email;
+  const oldpassword = req.body.oldpassword;
+  const newpassword = req.body.newpassword;
+  authService
+    .setPassword(email, oldpassword,newpassword)
+    .then((result) => {
+      res.status(200).json({
+        message: "Your password change successfully, you can now login",
+      });
+    })
+    .catch((err) => next(err));
+}
+
 module.exports = {
   userAuthenticate,
   userRegister,
   forgotPassword,
   verifyUserToken,
   verifyToken,
+  cPassword,
   changePassword,
 };

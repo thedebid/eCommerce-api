@@ -93,6 +93,26 @@ async function chPassword(email, password) {
   return user.save();
 }
 
+
+async function setPassword(email, oldpassword,newpassword) {
+  
+  const user = await userService.findByEmail(email);
+  //const hashPasword = bcrypt.hashSync(oldpassword, config.BCRYPT.SALT);
+  const isMatched = bcrypt.compareSync(oldpassword, user.password);
+
+  console.log(user);
+ // console.log(hashPasword);
+
+  if(isMatched){
+    user.password = bcrypt.hashSync(newpassword, config.BCRYPT.SALT);
+    return await user.save();
+  }else{
+throw "Old password didnot matched"
+  }
+
+}
+
+
 // create a jwt token containing the user id
 function generateJwtToken(user) {
   return jwt.sign({ id: user._id }, config.JWT.JWT_SECRET, { expiresIn: "1d" });
@@ -150,4 +170,5 @@ module.exports = {
   verifyToken,
   chPassword,
   fPassword,
+  setPassword
 };
