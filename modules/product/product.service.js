@@ -1,4 +1,6 @@
 const productModel = require("./product.model");
+const supplierModel = require("../supplier/supplier.model");
+
 const helper = require("./../../helpers/isValid")
 //function for product
 function save(data) {
@@ -15,8 +17,8 @@ function save(data) {
     newProduct.countInStock = data.countInStock;
     newProduct.isFeatured = data.isFeatured;
     newProduct.discount = data.discount;
-    newProduct.dateCreated = data.dateCreated;
-   
+    newProduct.supplier = data.supplierId;
+
     return newProduct.save();
   }
 
@@ -25,6 +27,17 @@ function getAll() {
     return productModel.find({});
   }
 
+// function for get limit product
+function getLimitProduct(){
+  // define an empty query document
+  const query = {};
+  // sort in descending (-1) order by length
+  //const sort = { length: -1 };
+  const limit = 2;
+  return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
+
+}
+
   //function for getting product by id
 async function findById(id) {
    if (!helper.isValidId(id)) throw "Invalid product id:" + ` ${id}`;
@@ -32,6 +45,14 @@ async function findById(id) {
     if (!product) throw "Product with" + ` ${id} ` + "not found";
     return product;
   }
+
+  //function for getting product by id
+async function findBySupplierId(id) {
+  if (!helper.isValidId(id)) throw "Invalid supplier id:" + ` ${id}`;
+   const supplier = await supplierModel.findById(id);
+   if (!supplier) throw "Supplier with" + ` ${id} ` + "not found";
+   return supplier;
+ }
 
   //function for updating product detail
 async function update(id, data) {
@@ -53,6 +74,8 @@ async function update(id, data) {
     getAll,
     findById,
     update,
-    remove
+    remove,
+    findBySupplierId,
+    getLimitProduct,
 
   }

@@ -7,6 +7,7 @@ function save(data) {
 
   newWishlist.product = data.productId;
   newWishlist.user = data.userId;
+  newWishlist.status = data.status;
   return newWishlist.save();
 }
 
@@ -31,7 +32,9 @@ async function remove(id) {
 
 //function for updating wishlist
 async function update(id, data) {
+
   const wishlist = await findById(id);
+
   // copy params to wishlist and save
   Object.assign(wishlist, data);
   return wishlist.save();
@@ -43,5 +46,4 @@ async function update(id, data) {
       getAll,
       remove,
       update,
-
   }

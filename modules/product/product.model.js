@@ -2,7 +2,6 @@
 
  const mongoose = require('mongoose');
 
-
  const productSchema = mongoose.Schema({
      name :{
          type:String,
@@ -38,17 +37,20 @@
      category : {
          type : mongoose.SchemaTypes.ObjectId,
          ref: 'category'
-     },
+     }, 
+     
      subCategory: {
          type : mongoose.SchemaTypes.ObjectId,
          ref : 'subCategory'
      },
+
+     
      countInStock : Number,
      //
  
      isFeatured : {
          type: Boolean,
-         default:false
+         default: 0
      },
      discount : {
          type : Number,
@@ -59,12 +61,11 @@
          default : 0
      },
 
-     dateCreated : {
-         type: Date,
-         default:Date.now()
-     }
+     supplier: {
+        type : mongoose.SchemaTypes.ObjectId,
+        ref : 'supplier'
+    },
  
-     
  },{
  timestamps:true
  }

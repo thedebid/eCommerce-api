@@ -7,13 +7,13 @@ const helper = require("../../helpers/isValid")
 
 //function for saving review
 async function save(data) {
-    const user = await userModel.findById(data.user);
+    const user = await userModel.findById(data.userId);
     if(!user) throw {status:400, message: "Users not found in the system"};
     var newReviewList = new reviewModel({});
     newReviewList.message = data.message;
     newReviewList.rating = data.rating;
     newReviewList.status = data.status;
-    newReviewList.user = data.user;
+    newReviewList.user = data.userId;
     return newReviewList.save();
   }
  
@@ -48,8 +48,8 @@ async function update(id, data) {
     // function for getting user by user id
     async function findByUserId(id) {
         const user = await userDetailModel
-          .findOne({ user: id });
-          console.log(user)
+          .findOne({user:id});
+         console.log(user)
         if (!user) throw "Details of user with" + ` ${id} ` + "not found";
         return user;
       }

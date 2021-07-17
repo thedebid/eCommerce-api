@@ -6,7 +6,6 @@ const reviewSchema = mongoose.Schema({
     user :{
         type : mongoose.Schema.Types.ObjectID,
         ref : 'user'
-
     },
     rating : {
         type : Number

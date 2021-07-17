@@ -32,6 +32,25 @@ function createProduct(req, res, next) {
             })
     }
 
+    //controller for getting limit product data
+    function getLimitProduct(req, res, next) {
+        productService
+            .getLimitProduct()
+            .then((result) => {
+                if (!result.length) {
+                    return next({
+                        message: 'Product not found',
+                        status: '500',
+                    })
+                }
+                res.status(200).json(result)
+            })
+            .catch((err) => {
+                next(err)
+            })
+    }
+
+
     //controller for getting product data by id
     function getProductById(req, res, next) {
         productService
@@ -39,6 +58,15 @@ function createProduct(req, res, next) {
             .then((result) => res.status(200).json(result))
             .catch((err) => next(err))
     }
+
+
+    // get product by supplier id
+   function getProductBySupplierId(req, res, next) {
+    productService
+        .findBySupplierId(req.params.id)
+        .then((result) => res.status(200).json(result))
+        .catch((err) => next(err))
+}
 
     // update product details
 function updateProduct(req, res, next) {
@@ -65,7 +93,9 @@ function updateProduct(req, res, next) {
       getProductList,
       getProductById,
       updateProduct,
-      deleteProduct
+      deleteProduct,
+      getProductBySupplierId,
+      getLimitProduct,
 
 
 
