@@ -23,7 +23,7 @@ function getSliderList(req, res, next){
 }
 
 // controller for getting a slider data by id
-function getSupplierByID(req,res,next){
+function getSliderByID(req,res,next){
     sliderService.findById(req.params.id)
     .then(result => res.status(200).json(result))
     .catch(err => next(err))
@@ -48,7 +48,7 @@ function deleteSlider(req , res, next){
 
 module.exports = {
     createSlider,
-    getSupplierByID,
+    getSliderByID,
     getSliderList,
     updateSlider,
     deleteSlider

@@ -7,7 +7,7 @@ router.route('/')
     .post(sliderController.createSlider)
 
 router.route('/:id')
-    .get(sliderController.getSupplierByID)
+    .get(sliderController.getSliderByID)
     .put(sliderController.updateSlider)
     .delete(sliderController.deleteSlider)
 

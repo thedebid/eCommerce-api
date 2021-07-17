@@ -5,11 +5,11 @@ const helper= require("./../../helpers/isValid");
 // function to save order
 function save(data){ 
     const newOrder = new orderModel({
-        user: data.user,
-        product:data.product,
+        user: data.userId,
+        product:data.productId,
         quantity:data.quantity,
-        supplier:data.supplier,
-        paymentMethod:data.paymentMethod
+        supplier:data.supplierId,
+       // paymentMethod:data.paymentMethod
          
     })
     return newOrder.save();

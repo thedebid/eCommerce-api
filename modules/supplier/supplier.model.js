@@ -23,7 +23,7 @@ const supplierSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  stauts: {
+  status: {
     type: Boolean,
     default: 0,
   },
