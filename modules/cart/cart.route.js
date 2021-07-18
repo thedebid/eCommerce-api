@@ -16,6 +16,11 @@ router.route('/:id')
 // endpoint for getting product and user data cart id
 router.route('/product-user/:id')
         .get(cartController.getProductUserById)
+
+// endpoint for getting product and user by user id 
+router.route('/product-by-user/:id')
+        .get(cartController.getProductByUserId)
+
        
 
 module.exports = router;

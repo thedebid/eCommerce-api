@@ -25,6 +25,14 @@ function getProductUser(id){
    
 };
 
+//function for getting all product by user id data using populate
+function getProduct(id){
+
+    //const product = productModel.find({});
+    return cartModel.find({user: id}).populate("user").populate("product");
+   
+};
+
 // function for getting a cart details by id
 async function findById(id){
 const cart = await cartModel.findById(id);
@@ -53,4 +61,6 @@ module.exports = {
     update,
     remove,
     getProductUser,
+    getProduct,
+
 }
