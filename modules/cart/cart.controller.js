@@ -17,6 +17,25 @@ function getCartList(req,res,next){
         })
 }
 
+//controller for getting data of product and user using populate
+function getProductUserById(req, res, next) {
+    cartService
+        .getProductUser(req.params.id)
+        .then((result) => { 
+            if (!result.length) {
+                return next({
+                    message: 'Cart not found',
+                    status: '400',
+                })
+            }
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            next(err)
+        })
+}
+
+
 // controller for getting cart detail by id
 function getCartById(req,res,next){
     cartService.findById(req.params.id)
@@ -36,6 +55,7 @@ function getCartById(req,res,next){
 
 // controller for saving cart details
 function createCart(req,res,next){
+    console.log("create cart");
     cartService.save(req.body)
     .then((result) => res.status(200).json({
         result,
@@ -66,5 +86,6 @@ module.exports = {
     getCartList,
     updateCart,
     deleteCart,
+    getProductUserById,
 
 }
