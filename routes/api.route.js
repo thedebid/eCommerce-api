@@ -7,7 +7,8 @@ const orderRoute = require('../modules/order/order.route');
 const notificationRoute = require("../modules/notification/notification.route");
 const productRoute = require("../modules/product/product.route");
 const wishlistRoute = require("../modules/wishlist/wishlist.route");
-const sliderRoute = require("../modules/slider/slider.route")
+const sliderRoute = require("../modules/slider/slider.route");
+const cartRoute = require("../modules/cart/cart.route");
 
 const authRoute = require("../modules/auth/auth.route");
 
@@ -26,6 +27,7 @@ router.use("/order",orderRoute);
 router.use("/wishlist", wishlistRoute);
 router.use("/slider", sliderRoute);
 router.use("/review", reviewRoute);
+router.use("/cart", cartRoute);
 
 
 module.exports = router;

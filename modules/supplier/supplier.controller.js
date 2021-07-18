@@ -40,8 +40,7 @@ function getSupplierList(req, res, next) {
 function getPopulate(req, res, next) {
     supplierService
         .getPopulate(req.params.id)
-        .then((result) => {
-            
+        .then((result) => { 
             if (!result.length) {
                 return next({
                     message: 'Supplier not found',
@@ -49,7 +48,6 @@ function getPopulate(req, res, next) {
                 })
             }
             res.status(200).json(result);
-
         })
         .catch((err) => {
             next(err)
