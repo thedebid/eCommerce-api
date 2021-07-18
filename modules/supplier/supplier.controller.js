@@ -36,6 +36,27 @@ function getSupplierList(req, res, next) {
         })
 }
 
+//controller for getting data of product and supplier using populate
+function getPopulate(req, res, next) {
+    supplierService
+        .getPopulate(req.params.id)
+        .then((result) => {
+            
+            if (!result.length) {
+                return next({
+                    message: 'Supplier not found',
+                    status: '400',
+                })
+            }
+            res.status(200).json(result);
+
+        })
+        .catch((err) => {
+            next(err)
+        })
+}
+
+
 // controller for getting supplier data by id
 function getSupplierByID(req, res, next) {
     supplierService
@@ -70,5 +91,6 @@ module.exports = {
     getSupplierByID,
     updateSupplier,
     deleteSupplier,
+    getPopulate,
 
 }

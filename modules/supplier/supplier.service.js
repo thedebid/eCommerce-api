@@ -1,6 +1,8 @@
 
 const supplierModel = require ('./supplier.model');
 
+const productModel = require ('../product/product.model')
+
 const helper= require("./../../helpers/isValid")
 //function for saving supplier data
 function save(data) {
@@ -19,6 +21,14 @@ function save(data) {
 //function for getting all user data
 function getAll(){
     return supplierModel.find({});
+};
+
+//function for getting all supplier and product data using populate
+function getPopulate(id){
+    
+    //const product = productModel.find({});
+    return productModel.find({_id: id}).populate("supplier");
+   
 };
 
 //function for getting user data by id
@@ -53,6 +63,7 @@ module.exports = {
     findById,
     update,
     remove,
+    getPopulate
 }
 
 

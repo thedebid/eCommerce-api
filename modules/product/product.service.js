@@ -31,8 +31,6 @@ function getAll() {
 function getLimitProduct(){
   // define an empty query document
   const query = {};
-  // sort in descending (-1) order by length
-  //const sort = { length: -1 };
   const limit = 2;
   return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
 
@@ -46,12 +44,12 @@ async function findById(id) {
     return product;
   }
 
-  //function for getting product by id
+  //function for getting product by supplier id
 async function findBySupplierId(id) {
   if (!helper.isValidId(id)) throw "Invalid supplier id:" + ` ${id}`;
-   const supplier = await supplierModel.findById(id);
-   if (!supplier) throw "Supplier with" + ` ${id} ` + "not found";
-   return supplier;
+   const product = await productModel.find({ supplier: id});
+   if (!product) throw "Supplier with" + ` ${id} ` + "not found";
+   return product;
  }
 
   //function for updating product detail
