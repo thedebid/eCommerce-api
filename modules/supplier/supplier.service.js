@@ -13,7 +13,8 @@ function save(data) {
         image : data.image,
         salesCount : data.salesCount,
         password : data.password,
-        status : data.status
+        status : data.status,
+        description : data.description,
     })
     return newSupplier.save()
     }

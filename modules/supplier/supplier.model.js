@@ -27,6 +27,10 @@ const supplierSchema = mongoose.Schema({
     type: Boolean,
     default: 0,
   },
+  description:{
+    type: String,
+    required: true,
+  }
 });
 
 const supplierModel = mongoose.model("supplier", supplierSchema);
