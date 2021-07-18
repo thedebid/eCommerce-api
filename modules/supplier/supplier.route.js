@@ -9,9 +9,13 @@ router.route('/')
         .post(supplierController.createSupplier);
 
 router.route('/:id')
-.get(supplierController.getSupplierByID)
-.delete(supplierController.deleteSupplier)
-.put(supplierController.updateSupplier)
+        .get(supplierController.getSupplierByID)
+        .delete(supplierController.deleteSupplier)
+        .put(supplierController.updateSupplier)
+        
+// endpoint for getting data of product and supplier by product id
+router.route('/get-populate/:id')
+        .get(supplierController.getPopulate)
 
 
 

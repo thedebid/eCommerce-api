@@ -19,7 +19,6 @@ router
     .get(productController.getProductById)
     .put(productController.updateProduct)
     .delete(productController.deleteProduct)
-    .get(productController.getProductBySupplierId)
 
 router
     .route('/supplier-id/:id')

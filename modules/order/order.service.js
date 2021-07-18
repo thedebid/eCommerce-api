@@ -9,8 +9,7 @@ function save(data){
         product:data.productId,
         quantity:data.quantity,
         supplier:data.supplierId,
-       // paymentMethod:data.paymentMethod
-         
+       // paymentMethod:data.paymentMethod    
     })
     return newOrder.save();
 }
