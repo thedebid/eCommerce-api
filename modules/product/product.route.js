@@ -14,6 +14,15 @@ router
 // endpoint for getting latest product
 router.route('/get-limit-product').get(productController.getLimitProduct)
 
+// endpoint for getting featured product limit
+router.route('/get-featured-product').get(productController.getLimitFeatured)
+
+// endpoint for getting all featured product
+router.route('/featured').get(productController.getAllFeatured)
+
+// endpoint for search
+router.route('/search-product/:search').get(productController.searchProduct);
+
 router
     .route('/:id')
     .get(productController.getProductById)
