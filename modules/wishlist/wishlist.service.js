@@ -19,6 +19,14 @@ async function findById(id) {
   return wishlist;
 }
 
+//function for getting wishlist by user id
+async function findByUserId(id) {
+  if (!helper.isValidId(id)) throw "Invalid wishlist id:" + ` ${id}`;
+  const wishlist = await wishlistModel.find({user: id}).populate("user").populate("product");
+  if (!wishlist) throw "User with" + ` ${id} ` + "not found";
+  return wishlist;
+}
+
 //function for getting all wishlist data
 function getAll() {
   return wishlistModel.find({});
@@ -31,13 +39,15 @@ async function remove(id) {
 }
 
 //function for updating wishlist
-async function update(id, data) {
-
-  const wishlist = await findById(id);
-
-  // copy params to wishlist and save
-  Object.assign(wishlist, data);
-  return wishlist.save();
+async function update(id,data){
+ 
+  if (!helper.isValidId(id)) throw `Invalid wishlist id : ${id}`;
+  else{
+      const wishlist = await wishlistModel.findByIdAndUpdate(id);
+      Object.assign(wishlist, data);
+      console.log("wishlist: ", data);
+      return wishlist.save();
+}
 }
 
   module.exports = {
@@ -46,4 +56,5 @@ async function update(id, data) {
       getAll,
       remove,
       update,
+      findByUserId,
   }

@@ -5,7 +5,9 @@ function createWishlist(req, res, next) {
     wishlistService
       .save(req.body)
       .then((result) => {
-        res.status(200).json(result);
+        res.status(200).json({
+          result,
+          message:"Wishlist placed successfully!"});
       })
       .catch((err) => {
         next(err);
@@ -39,6 +41,14 @@ function getWishlistById(req, res, next) {
       .catch((err) => next(err))
 }
 
+//controller for getting wishlist by user id
+function getWishlistByUserId(req, res, next) {
+  wishlistService
+      .findByUserId(req.params.id)
+      .then((result) => res.status(200).json(result))
+      .catch((err) => next(err))
+}
+
 function deleteWishlist(req, res, next) {
   wishlistService
       .remove(req.params.id)
@@ -64,6 +74,7 @@ function updateWishlist(req, res, next) {
       getWishlistById,
       deleteWishlist, 
       updateWishlist,
+      getWishlistByUserId,
   
   }
   

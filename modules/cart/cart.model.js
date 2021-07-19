@@ -11,7 +11,6 @@ const cartSchema = mongoose.Schema({
         ref: "product",
         reqyuired: true
     },
-
     
 },
 {

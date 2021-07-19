@@ -76,6 +76,14 @@ function updateProduct(req, res, next) {
       .catch((err) => next(err));
   }
 
+  // update product details
+function countInStock(req, res, next) {
+    productService
+      .minusStock(req.params.id, req.body)
+      .then((result) => res.status(200).json(result))
+      .catch((err) => next(err));
+  }
+
   function deleteProduct(req, res, next) {
     productService
         .remove(req.params.id)
@@ -96,6 +104,7 @@ function updateProduct(req, res, next) {
       deleteProduct,
       getProductBySupplierId,
       getLimitProduct,
+      countInStock,
 
 
 

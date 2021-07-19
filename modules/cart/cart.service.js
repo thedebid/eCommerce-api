@@ -7,7 +7,7 @@ function save(data){
     const newCart = new cartModel({
         user: data.userId,
         product:data.productId,
-           
+        
     })
     return newCart.save();
 }
@@ -62,5 +62,5 @@ module.exports = {
     remove,
     getProductUser,
     getProduct,
-
+    
 }
