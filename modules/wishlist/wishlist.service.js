@@ -8,6 +8,7 @@ function save(data) {
   newWishlist.product = data.productId;
   newWishlist.user = data.userId;
   newWishlist.status = data.status;
+  newWishlist.supplier = data.supplierId;
   return newWishlist.save();
 }
 

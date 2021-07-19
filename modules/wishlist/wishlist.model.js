@@ -9,6 +9,11 @@ const wishlistSchema = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'user'
     },
+
+    supplier : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'supplier'
+    },
     status : {
         type : Boolean,
         default : 0 

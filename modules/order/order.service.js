@@ -40,10 +40,20 @@ async function remove(id){
     return order.remove()
 }
 
+// function for getting order details by user details
+async function findByUserId(id) {
+    if (!helper.isValidId(id)) throw "Invalid user id:" + ` ${id}`;
+    const order = await orderModel.find({user: id}).populate("user").populate("product").populate("supplier");
+    if (!order) throw "User with" + ` ${id} ` + "not found";
+    return order;
+  }
+
+
 module.exports = {
     save,
     getAll,
     findById,
     update,
-    remove
+    remove,
+    findByUserId,
 }
