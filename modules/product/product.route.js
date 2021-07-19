@@ -39,11 +39,14 @@ router
     .route('/supplier-id/:id')
     .get(productController.getProductBySupplierId)
 
+//endpoint for getting product by category id
+router
+    .route('/product-by-category/:id')
+    .get(productController.getProductByCategoryId)
+
 // endpoint to substract countInStock when sales by product id
 router
     .route('/count-in-stock/:id')
     .put(productController.countInStock)
-    
-
     
 module.exports = router;

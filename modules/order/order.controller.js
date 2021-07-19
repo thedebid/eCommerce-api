@@ -1,4 +1,5 @@
 const orderService = require('./order.service');
+const cartService = require('../cart/cart.service');
 
 // controller for getting orders details
 function getOrderList(req,res,next){
@@ -32,10 +33,10 @@ function getOrderByUserId(req,res,next){
 }
 
 
-
 // controller for saving order details
 function createOrder(req,res,next){
     orderService.save(req.body)
+   // cartService.remove(req.body.supplierId)
     .then((result) => res.status(200).json({
         result,
         message:"Order placed successfully!"
@@ -66,5 +67,6 @@ module.exports = {
     updateOrder,
     deleteOrder,
     getOrderByUserId,
+    
 
 }
