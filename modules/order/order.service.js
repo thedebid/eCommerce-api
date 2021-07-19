@@ -1,5 +1,6 @@
 
 const orderModel = require('./order.model');
+const cartService = require('../cart/cart.service');
 const helper= require("./../../helpers/isValid");
 
 // function to save order
@@ -11,13 +12,24 @@ function save(data){
         supplier:data.supplierId,
        // paymentMethod:data.paymentMethod    
     })
-    return newOrder.save();
+    // if(newOrder.save() == true){
+    //     cartService.remove(data.userId);
+        return newOrder.save();
+    // }
+    //return newOrder.save();
 }
 
 // function for getting all order details 
 function getAll(){
     return orderModel.find({});
 }
+
+async function findByUserId(id) {
+    if (!helper.isValidId(id)) throw "Invalid user id:" + ` ${id}`;
+    const order = await orderModel.find({user: id}).populate("user").populate("product").populate("supplier");
+    if (!order) throw "User with" + ` ${id} ` + "not found";
+    return order;
+  }
 
 // function for getting a order details by id
 async function findById(id){
@@ -56,4 +68,5 @@ module.exports = {
     update,
     remove,
     findByUserId,
+   
 }

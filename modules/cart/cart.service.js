@@ -35,8 +35,8 @@ function getProduct(id){
 
 // function for getting a cart details by id
 async function findById(id){
-const cart = await cartModel.findById(id);
-if(!cart) throw "cart not found";
+    const cart = await cartModel.findById(id);
+    if(!cart) throw "cart not found";
 return cart;
 }
 
@@ -53,6 +53,7 @@ async function remove(id){
     const cart = await findById(id);
     return cart.remove()
 }
+
 
 module.exports = {
     save,

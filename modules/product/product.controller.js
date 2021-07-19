@@ -147,7 +147,15 @@ function createProduct(req, res, next) {
         .findBySupplierId(req.params.id)
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err))
-}
+    }
+
+     // get product by supplier id
+   function getProductByCategoryId(req, res, next) {
+    productService
+        .findByCategoryId(req.params.id)
+        .then((result) => res.status(200).json(result))
+        .catch((err) => next(err))
+    }
 
     // update product details
 function updateProduct(req, res, next) {
@@ -191,5 +199,6 @@ function countInStock(req, res, next) {
       getAllFeatured,
       limitProduct,
       randomProduct,
+      getProductByCategoryId,
 
   }

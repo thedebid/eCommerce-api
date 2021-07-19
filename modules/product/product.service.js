@@ -136,6 +136,16 @@ async function minusStock(id, data) {
   
 }
 
+
+// function for getting product by category
+
+async function findByCategoryId(id) {
+  if (!helper.isValidId(id)) throw "Invalid category id:" + ` ${id}`;
+   const product = await productModel.find({ category: id});
+   if (!product) throw "category with" + ` ${id} ` + "not found";
+   return product;
+ }
+
   //function for deleting product
     async function remove(id) {
         const product = await findById(id);
@@ -156,5 +166,6 @@ async function minusStock(id, data) {
     getAllFeaturedProduct,
     limitProduct,
     getRandomProduct,
+    findByCategoryId
 
   }
