@@ -106,7 +106,4 @@ function countInStock(req, res, next) {
       getLimitProduct,
       countInStock,
 
-
-
-
   }

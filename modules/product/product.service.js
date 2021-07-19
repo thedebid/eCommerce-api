@@ -63,12 +63,11 @@ async function update(id, data) {
 
   //function for substract in stock 
 async function minusStock(id, data) {
-  console.log("data: ",data);
 
   const product = await productModel.findOne({_id: id});
   const countInStock = product.countInStock;
   
-  if(countInStock == !null){
+  if(countInStock != null){
     const quantity = data.quantity;
     const stock = countInStock - quantity;
 
@@ -79,13 +78,8 @@ async function minusStock(id, data) {
 
    return product.save();
   }else{
-    throw "Product is not Available.";
+    throw "Product " + ` ${product.name} ` + "not found";
   }
-   
-
-  
-  console.log("Stock available",stock);
-
   
 }
 
