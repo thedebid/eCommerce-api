@@ -36,6 +36,26 @@ function getSupplierList(req, res, next) {
         })
 }
 
+//controller for getting all supplier data
+function getSupplierLimit(req, res, next) {
+    supplierService
+        .limitSupplier()
+        .then((result) => {
+            
+            if (!result.length) {
+                return next({
+                    message: 'Supplier not found',
+                    status: '400',
+                })
+            }
+            res.status(200).json(result);
+
+        })
+        .catch((err) => {
+            next(err)
+        })
+}
+
 //controller for getting data of product and supplier using populate
 function getPopulate(req, res, next) {
     supplierService
@@ -90,5 +110,6 @@ module.exports = {
     updateSupplier,
     deleteSupplier,
     getPopulate,
+    getSupplierLimit,
 
 }

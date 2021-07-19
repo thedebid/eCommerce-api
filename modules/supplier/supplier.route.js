@@ -8,6 +8,10 @@ router.route('/')
         .get(supplierController.getSupplierList)
         .post(supplierController.createSupplier);
 
+// endpoint for getting limit supplier
+router.route('/supplier-limit')
+        .get(supplierController.getSupplierLimit);
+
 router.route('/:id')
         .get(supplierController.getSupplierByID)
         .delete(supplierController.deleteSupplier)

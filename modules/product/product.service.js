@@ -37,13 +37,21 @@ function getLimitProduct(){
 
 }
 
-// function for get 10 limit product
+// function for getting 10 limit product
 function limitProduct(){
   const query = {};
   const limit = 10;
   return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
 }
 
+// function for getting random product
+function getRandomProduct(){
+
+  const product = productModel.find({"status": "1" });
+  
+  return product;
+}
+ 
 // function for get limit featured product
 function getLimitFeaturedProduct(){
   // define an empty query document
@@ -85,8 +93,10 @@ async function findBySupplierId(id) {
   //console.log("search : ",search);
 
    const product = productModel.find({});
-   const collection = db.collection.createIndex(product);
-   console.log("collection",collection);
+   const collection = db.collection.insert(product);
+   console.log("collection: ",collection);
+  //  const collection = db.collection.createIndex(product);
+  //  console.log("collection",collection);
    //const searchItem = db.articles.find( { $text: { $search: "fashion" } } )
    
    //return product;
@@ -145,5 +155,6 @@ async function minusStock(id, data) {
     getLimitFeaturedProduct,
     getAllFeaturedProduct,
     limitProduct,
+    getRandomProduct,
 
   }

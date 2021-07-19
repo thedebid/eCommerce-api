@@ -11,8 +11,11 @@ router
     .post(productController.createProduct)
     .get(productController.getProductList)
 
-// endpoint for getting 4 latest product 
+// endpoint for getting 2 latest product 
 router.route('/get-limit-product').get(productController.getLimitProduct)
+
+// endpoint for getting product randomly
+router.route('/random-product').get(productController.randomProduct);
 
 // endpoint for getting 10 latest product 
 router.route('/limit-product').get(productController.limitProduct)

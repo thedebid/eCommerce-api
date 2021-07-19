@@ -50,6 +50,24 @@ function createProduct(req, res, next) {
             })
     }
 
+    //controller for getting random product data
+    function randomProduct(req, res, next) {
+        productService
+            .getRandomProduct()
+            .then((result) => {
+                if (!result.length) {
+                    return next({
+                        message: 'Product not found',
+                        status: '500',
+                    })
+                }
+                res.status(200).json(result)
+            })
+            .catch((err) => {
+                next(err)
+            })
+    }
+
     //controller for getting limit 10 latest product data
     function limitProduct(req, res, next) {
         productService
@@ -172,5 +190,6 @@ function countInStock(req, res, next) {
       getLimitFeatured,
       getAllFeatured,
       limitProduct,
+      randomProduct,
 
   }
