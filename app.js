@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 const api = config.API_URL;
 app.use(`${api}/`, APIRoute);
 
-//Server
+//Local Server
 // app.listen(config.PORT, () => {
 //   console.log(`Server is running at port : ${config.PORT}`);
 // });
 
-// //for pro
+// //Production server
 var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
 var server_host = process.env.YOUR_HOST || "0.0.0.0";
 app.listen(server_port, server_host, (err, done) => {
