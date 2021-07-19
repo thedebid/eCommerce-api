@@ -37,6 +37,13 @@ function getLimitProduct(){
 
 }
 
+// function for get 10 limit product
+function limitProduct(){
+  const query = {};
+  const limit = 10;
+  return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
+}
+
 // function for get limit featured product
 function getLimitFeaturedProduct(){
   // define an empty query document
@@ -137,5 +144,6 @@ async function minusStock(id, data) {
     search,
     getLimitFeaturedProduct,
     getAllFeaturedProduct,
+    limitProduct,
 
   }
