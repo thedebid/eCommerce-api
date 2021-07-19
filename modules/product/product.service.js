@@ -1,7 +1,8 @@
 const productModel = require("./product.model");
 const supplierModel = require("../supplier/supplier.model");
 
-const helper = require("./../../helpers/isValid")
+const helper = require("./../../helpers/isValid");
+const { db } = require("./product.model");
 //function for product
 function save(data) {
     var newProduct = new productModel({});
@@ -36,6 +37,33 @@ function getLimitProduct(){
 
 }
 
+// function for get 10 limit product
+function limitProduct(){
+  const query = {};
+  const limit = 10;
+  return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
+}
+
+// function for get limit featured product
+function getLimitFeaturedProduct(){
+  // define an empty query document
+  const query = {"isFeatured": 1};
+  const limit = 2;
+
+  return productModel.find(query).limit(limit);
+
+}
+
+
+
+// function for get all featured product
+function getAllFeaturedProduct(){
+  // define an empty query document
+  const query = {"isFeatured": 1};
+  return productModel.find(query);
+
+}
+
   //function for getting product by id
 async function findById(id) {
    if (!helper.isValidId(id)) throw "Invalid product id:" + ` ${id}`;
@@ -50,6 +78,21 @@ async function findBySupplierId(id) {
    const product = await productModel.find({ supplier: id});
    if (!product) throw "Supplier with" + ` ${id} ` + "not found";
    return product;
+ }
+
+ //search product
+ function search(search) {
+  //console.log("search : ",search);
+
+   const product = productModel.find({});
+   const collection = db.collection.createIndex(product);
+   console.log("collection",collection);
+   //const searchItem = db.articles.find( { $text: { $search: "fashion" } } )
+   
+   //return product;
+
+  //  if (!product) throw "Product Not Found";
+  //   return product;
  }
 
   //function for updating product detail
@@ -68,15 +111,15 @@ async function minusStock(id, data) {
   const countInStock = product.countInStock;
   
   if(countInStock != null){
-    const quantity = data.quantity;
-    const stock = countInStock - quantity;
+      const quantity = data.quantity;
+      const stock = countInStock - quantity;
 
-    const availableStock = {countInStock: stock}
+      const availableStock = {countInStock: stock}
 
-  // copy params to userDetail and save
-   Object.assign(product, availableStock);
+    // copy params to userDetail and save
+    Object.assign(product, availableStock);
 
-   return product.save();
+    return product.save();
   }else{
     throw "Product " + ` ${product.name} ` + "not found";
   }
@@ -98,5 +141,9 @@ async function minusStock(id, data) {
     findBySupplierId,
     getLimitProduct,
     minusStock,
+    search,
+    getLimitFeaturedProduct,
+    getAllFeaturedProduct,
+    limitProduct,
 
   }

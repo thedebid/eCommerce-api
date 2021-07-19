@@ -50,11 +50,74 @@ function createProduct(req, res, next) {
             })
     }
 
+    //controller for getting limit 10 latest product data
+    function limitProduct(req, res, next) {
+        productService
+            .limitProduct()
+            .then((result) => {
+                if (!result.length) {
+                    return next({
+                        message: 'Product not found',
+                        status: '500',
+                    })
+                }
+                res.status(200).json(result)
+            })
+            .catch((err) => {
+                next(err)
+            })
+    }
+
+
+    //controller for getting all featured product
+    function getAllFeatured(req, res, next) {
+        productService
+            .getAllFeaturedProduct()
+            .then((result) => {
+                if (!result.length) {
+                    return next({
+                        message: 'Featured Product not found',
+                        status: '500',
+                    })
+                }
+                res.status(200).json(result)
+            })
+            .catch((err) => {
+                next(err)
+            })
+    }
+
+    //controller for getting limit featured product data
+    function getLimitFeatured(req, res, next) {
+        productService
+            .getLimitFeaturedProduct()
+            .then((result) => {
+                if (!result.length) {
+                    return next({
+                        message: 'Featured Product not found',
+                        status: '500',
+                    })
+                }
+                res.status(200).json(result)
+            })
+            .catch((err) => {
+                next(err)
+            })
+    }
+
 
     //controller for getting product data by id
     function getProductById(req, res, next) {
         productService
             .findById(req.params.id)
+            .then((result) => res.status(200).json(result))
+            .catch((err) => next(err))
+    }
+
+    //search product
+    function searchProduct(req, res, next) {
+        productService
+            .search(req.params.search)
             .then((result) => res.status(200).json(result))
             .catch((err) => next(err))
     }
@@ -105,5 +168,9 @@ function countInStock(req, res, next) {
       getProductBySupplierId,
       getLimitProduct,
       countInStock,
+      searchProduct,
+      getLimitFeatured,
+      getAllFeatured,
+      limitProduct,
 
   }
