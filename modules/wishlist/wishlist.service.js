@@ -23,7 +23,7 @@ async function findById(id) {
 //function for getting wishlist by user id
 async function findByUserId(id) {
   if (!helper.isValidId(id)) throw "Invalid wishlist id:" + ` ${id}`;
-  const wishlist = await wishlistModel.find({user: id}).populate("user").populate("product");
+  const wishlist = await wishlistModel.find({user: id}).populate("user").populate("product").populate("supplier");
   if (!wishlist) throw "User with" + ` ${id} ` + "not found";
   return wishlist;
 }
