@@ -24,6 +24,13 @@ function getAll(){
     return supplierModel.find({});
 };
 
+// function for get 2 limit supplier
+function limitSupplier(){
+    const query = {};
+    const limit = 2;
+    return supplierModel.find(query).limit(limit);
+  }
+
 //function for getting all supplier and product data using populate
 function getPopulate(id){
     
@@ -64,7 +71,8 @@ module.exports = {
     findById,
     update,
     remove,
-    getPopulate
+    getPopulate,
+    limitSupplier,
 }
 
 
