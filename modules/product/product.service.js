@@ -61,6 +61,34 @@ async function update(id, data) {
     return product.save();
   }
 
+  //function for substract in stock 
+async function minusStock(id, data) {
+  console.log("data: ",data);
+
+  const product = await productModel.findOne({_id: id});
+  const countInStock = product.countInStock;
+  
+  if(countInStock == !null){
+    const quantity = data.quantity;
+    const stock = countInStock - quantity;
+
+    const availableStock = {countInStock: stock}
+
+  // copy params to userDetail and save
+   Object.assign(product, availableStock);
+
+   return product.save();
+  }else{
+    throw "Product is not Available.";
+  }
+   
+
+  
+  console.log("Stock available",stock);
+
+  
+}
+
   //function for deleting product
     async function remove(id) {
         const product = await findById(id);
@@ -75,5 +103,6 @@ async function update(id, data) {
     remove,
     findBySupplierId,
     getLimitProduct,
+    minusStock,
 
   }
