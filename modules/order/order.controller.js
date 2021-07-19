@@ -20,19 +20,18 @@ function getOrderList(req,res,next){
 // controller for getting order detail by id
 function getOrderById(req,res,next){
     orderService.findById(req.params.id)
-    // .then((result) => {
-    //     if(!result.length){
-    //         return next ({
-    //             message : `No order found with Id :${req.params.id}`,
-    //             status: '400'
-    //         })
-    //     }
-    // })
-    // .catch((err) => next(err));
-
     .then((result) => res.status(200).json(result))
     .catch((err) => next(err))
 }
+
+// controller for getting order detail by id
+function getOrderByUserId(req,res,next){
+    orderService.findByUserId(req.params.id)
+    .then((result) => res.status(200).json(result))
+    .catch((err) => next(err))
+}
+
+
 
 // controller for saving order details
 function createOrder(req,res,next){
@@ -65,6 +64,7 @@ module.exports = {
     getOrderById,
     getOrderList,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    getOrderByUserId,
 
 }
