@@ -89,20 +89,14 @@ async function findBySupplierId(id) {
  }
 
  //search product
- function search(search) {
-  //console.log("search : ",search);
-
-   const product = productModel.find({});
-   const collection = db.collection.insert(product);
-   console.log("collection: ",collection);
-  //  const collection = db.collection.createIndex(product);
-  //  console.log("collection",collection);
-   //const searchItem = db.articles.find( { $text: { $search: "fashion" } } )
+  async function search(name) {
+  if(!name) throw "Please product name";
+  
+    var regex = new RegExp(name,'i');
+    const product = await productModel.find({name: regex});
    
-   //return product;
-
-  //  if (!product) throw "Product Not Found";
-  //   return product;
+     if(product.length < 1) throw "Product with name"+ ` ${name} ` +" not Found";
+     return product;
  }
 
   //function for updating product detail

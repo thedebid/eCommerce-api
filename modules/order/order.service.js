@@ -5,6 +5,9 @@ const helper= require("./../../helpers/isValid");
 
 // function to save order
 function save(data){ 
+   //  console.log(JSON.parse(data)); 
+    console.log(data); 
+
     const newOrder = new orderModel({
         user: data.userId,
         product:data.productId,

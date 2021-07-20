@@ -26,8 +26,7 @@ router.route('/get-featured-product').get(productController.getLimitFeatured)
 // endpoint for getting all featured product
 router.route('/featured').get(productController.getAllFeatured)
 
-// endpoint for search
-router.route('/search-product/:search').get(productController.searchProduct);
+
 
 router
     .route('/:id')
@@ -48,5 +47,8 @@ router
 router
     .route('/count-in-stock/:id')
     .put(productController.countInStock)
+
+// endpoint for search product by name
+router.route('/search-product/:name').get(productController.searchProduct);
     
 module.exports = router;
