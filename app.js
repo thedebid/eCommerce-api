@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //API Routes
-const api = config.API_URL;
+const api = config.API_URL; 
 app.use(`${api}/`, APIRoute);
 
 //Local Server

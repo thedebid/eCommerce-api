@@ -132,10 +132,10 @@ function createProduct(req, res, next) {
             .catch((err) => next(err))
     }
 
-    //search product
+    //search product by name
     function searchProduct(req, res, next) {
         productService
-            .search(req.params.search)
+            .search(req.params.name)
             .then((result) => res.status(200).json(result))
             .catch((err) => next(err))
     }
