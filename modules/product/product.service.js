@@ -25,13 +25,14 @@ function save(data) {
 
   //function for getting all user data
 function getAll() {
-    return productModel.find({});
+    const query = { countInStock: { $gt: 0 }};
+    return productModel.find(query);
   }
 
 // function for get limit product
 function getLimitProduct(){
   // define an empty query document
-  const query = {};
+  const query = { countInStock: { $gt: 0 }};
   const limit = 2;
   return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
 
@@ -39,7 +40,7 @@ function getLimitProduct(){
 
 // function for getting 10 limit product
 function limitProduct(){
-  const query = {};
+  const query = { countInStock: { $gt: 0 }};
   const limit = 10;
   return productModel.find(query).sort( { "updatedAt": -1 }).limit(limit);
 }
@@ -47,15 +48,18 @@ function limitProduct(){
 // function for getting random product
 function getRandomProduct(){
 
-  const product = productModel.find({"status": "1" });
+  const query = { countInStock: { $gt: 0 }, status: 1};
+  const product = productModel.find(query);
+  //const product = productModel.find({"status": "1" });
   
   return product;
 }
  
 // function for get limit featured product
 function getLimitFeaturedProduct(){
-  // define an empty query document
-  const query = {"isFeatured": 1};
+  // define an empty query 
+  const query = { countInStock: { $gt: 0 }, isFeatured: 1}
+  //const query = {"isFeatured": 1};
   const limit = 2;
 
   return productModel.find(query).limit(limit);
@@ -67,7 +71,8 @@ function getLimitFeaturedProduct(){
 // function for get all featured product
 function getAllFeaturedProduct(){
   // define an empty query document
-  const query = {"isFeatured": 1};
+  const query = { countInStock: { $gt: 0 }, isFeatured: 1};
+ // const query = {"isFeatured": 1};
   return productModel.find(query);
 
 }
@@ -83,19 +88,21 @@ async function findById(id) {
   //function for getting product by supplier id
 async function findBySupplierId(id) {
   if (!helper.isValidId(id)) throw "Invalid supplier id:" + ` ${id}`;
-   const product = await productModel.find({ supplier: id});
+  const query = { countInStock: { $gt: 0 }, supplier: id}
+  //const query = { countInStock: { $gt: 0 }, isFeatured: 1}
+   const product = await productModel.find(query);
    if (!product) throw "Supplier with" + ` ${id} ` + "not found";
    return product;
  }
 
  //search product
   async function search(name) {
-  if(!name) throw "Please product name";
+  if(!name) throw "Please Enter product name";
   
     var regex = new RegExp(name,'i');
-    const product = await productModel.find({name: regex});
+    const product = await productModel.find({name: regex, countInStock: { $gt: 0 }});
    
-     if(product.length < 1) throw "Product with name"+ ` ${name} ` +" not Found";
+     if(product.length < 1 ) throw "Product with name"+ ` ${name} ` +" not Found";
      return product;
  }
 
@@ -119,13 +126,13 @@ async function minusStock(id, data) {
       const stock = countInStock - quantity;
 
       const availableStock = {countInStock: stock}
-
+ 
     // copy params to userDetail and save
     Object.assign(product, availableStock);
 
     return product.save();
   }else{
-    throw "Product " + ` ${product.name} ` + "not found";
+    throw "Product " + ` ${product.name} ` + "not found in stock";
   }
   
 }
@@ -135,7 +142,8 @@ async function minusStock(id, data) {
 
 async function findByCategoryId(id) {
   if (!helper.isValidId(id)) throw "Invalid category id:" + ` ${id}`;
-   const product = await productModel.find({ category: id});
+   const query = { countInStock: { $gt: 0 }, category: id}
+   const product = await productModel.find(query);
    if (!product) throw "category with" + ` ${id} ` + "not found";
    return product;
  }

@@ -1,12 +1,14 @@
 
 const cartModel = require('./cart.model');
 const helper= require("./../../helpers/isValid");
+const { findByUserId } = require('../order/order.service');
+const productModel = require("./../product/product.model");
 
 // function to save cart
 function save(data){ 
     const newCart = new cartModel({
         user: data.userId,
-        product:data.productId,
+        product: data.productId,
         
     })
     return newCart.save();
@@ -54,6 +56,12 @@ async function remove(id){
     return cart.remove()
 }
 
+// function for deleting cart by user id
+async function deleteCart(userId){
+    const cart = await cartModel.remove({"user": userId});
+    return cart;
+}
+
 
 module.exports = {
     save,
@@ -63,5 +71,6 @@ module.exports = {
     remove,
     getProductUser,
     getProduct,
+    deleteCart,
     
 }

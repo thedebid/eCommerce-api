@@ -4,7 +4,7 @@ const notificationModel = require('./notification.model');
 
 function save(data){
     var newNotification = new notificationModel({});
-   newNotification.user = data.userid
+    newNotification.user = data.userid
     newNotification.title = data.title
     newNotification.description = data.description
     newNotification.image = data.image
@@ -14,7 +14,8 @@ function save(data){
 
 //function for getting all notification data
 function getAll(){
-    return  notificationModel.find({});
+    const query = {};
+    return  notificationModel.find(query).sort( { "updatedAt": -1 }); 
 }
 
 //function for getting notification by user id
